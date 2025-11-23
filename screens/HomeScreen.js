@@ -1,9 +1,13 @@
+// HomeScreen.js (modificado para incluir navegación)
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'; 
 
 const HomeScreen = () => {
+  const navigation = useNavigation(); 
+
   return (
     <LinearGradient 
       colors={['#3a7bd5', '#3A6073']} 
@@ -22,7 +26,10 @@ const HomeScreen = () => {
           <Text style={[styles.buttonText, styles.primaryButtonText]}>Registrarse</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, styles.secondaryButton]}>
+        <TouchableOpacity 
+          style={[styles.button, styles.secondaryButton]} 
+          onPress={() => navigation.navigate('Login')} // Navega a LoginScreen
+        >
           <Text style={styles.buttonText}>Iniciar Sesión</Text>
         </TouchableOpacity>
       </View>
