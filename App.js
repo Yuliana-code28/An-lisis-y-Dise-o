@@ -1,9 +1,8 @@
-// App.js (modificado para incluir navegación con React Navigation)
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './screens/HomeScreen'; // Asegúrate de que la ruta sea correcta
-import LoginScreen from './screens/LoginScreen'; // Asegúrate de que la ruta sea correcta
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen'; 
 
 const Stack = createStackNavigator();
 

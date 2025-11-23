@@ -1,4 +1,3 @@
-// HomeScreen.js (modificado para incluir navegación)
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -28,7 +27,7 @@ const HomeScreen = () => {
 
         <TouchableOpacity 
           style={[styles.button, styles.secondaryButton]} 
-          onPress={() => navigation.navigate('Login')} // Navega a LoginScreen
+          onPress={() => navigation.navigate('Login')} 
         >
           <Text style={styles.buttonText}>Iniciar Sesión</Text>
         </TouchableOpacity>

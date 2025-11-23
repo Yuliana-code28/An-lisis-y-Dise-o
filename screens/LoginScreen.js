@@ -16,13 +16,12 @@ const LoginScreen = () => {
       colors={['#3a7bd5', '#3A6073']} 
       style={styles.container}
     >
-      {/* Logo */}
+   
       <View style={styles.logoContainer}>
         <Ionicons name="person-circle-outline" size={80} color="white" />
         <Text style={styles.title}>Iniciar Sesión</Text>
       </View>
 
-      {/* Formulario */}
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
@@ -45,7 +44,6 @@ const LoginScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Enlace de registro */}
       <TouchableOpacity>
         <Text style={styles.registerText}>¿No tienes cuenta? Regístrate</Text>
       </TouchableOpacity>
@@ -103,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen; 
+export default LoginScreen;
