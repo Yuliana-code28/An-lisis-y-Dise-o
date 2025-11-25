@@ -5,7 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/LoginScreen'; 
 import InicioScreen from './screens/InicioScreen'; 
 import HomeScreen from './screens/HomeScreen'
-
+import PerfilScreen from './screens/PerfilScreen';
+import ConductorScreen from './screens/ConductorScreen';
+ 
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -26,6 +28,16 @@ export default function App() {
           name="Inicio" 
           component={InicioScreen} 
           options={{ headerShown: false }} 
+        />
+        <Stack.Screen
+          name="Perfil"
+          component={PerfilScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+        name='Conductor'
+        component={ConductorScreen}
+        options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

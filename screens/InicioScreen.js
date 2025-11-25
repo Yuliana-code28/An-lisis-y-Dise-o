@@ -78,7 +78,7 @@ export default function InicioScreen() {
       {/* Floating "+" button */}
       <TouchableOpacity 
         style={styles.addButton} 
-        onPress={() => navigation.navigate('NuevaScreen')}
+        onPress={() => navigation.navigate('Perfil')}
       >
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   borderWidth: 1,
   borderColor: PASTEL.border,
   padding: 8,
-  gap: 8,
+  gap: 8, 
   shadowColor: '#000',
   shadowOpacity: 0.08,
   shadowRadius: 12,

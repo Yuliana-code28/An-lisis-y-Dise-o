@@ -1,19 +1,72 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Platform, Alert, Switch } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [terminos, setTerminos] = useState(false); 
 
   const mostrarAlertas = () => {
-    alert(`Inicio de sesión éxitoso con:\nEmail: ${email}`);
-    navigation.navigate('Inicio'); // Navega a InicioScreen
+    if (email.trim() === '' || password.trim() === '') {
+      if (Platform.OS === 'web') {
+        alert('Por favor, escribe tu correo electrónico y contraseña para continuar.');
+      } else {
+        Alert.alert(
+          'Error',
+          'Por favor, escribe tu correo electrónico y contraseña para continuar.',
+          [
+            { text: 'Cancelar' },
+            { text: 'Aceptar' }
+          ]
+        );
+      }
+      return;
+    }
+
+    if (!email.includes('@')) {
+      if (Platform.OS === 'web') {
+        alert('El correo debe contener el símbolo @');
+      } else {
+        Alert.alert(
+          'Correo inválido',
+          'El correo debe contener arroba @ ',
+          [
+            { text: 'Aceptar' }
+          ]
+        );
+      }
+      return;
+    }
+
+    if (!terminos) {
+      if (Platform.OS === 'web') {
+        alert('Favor de aceptar los términos y condiciones para poder continuar.');
+      } else {
+        Alert.alert(
+          'Términos no aceptados',
+          'Favor de aceptar los términos y condiciones para poder continuar.',
+          [
+            { text: 'Cancelar' },
+            { text: 'Aceptar' }
+          ]
+        );
+      }
+      return; 
+    }
+
+    // ✅ Navegación a InicioScreen
+    Alert.alert('Bienvenida', 'Has iniciado sesión correctamente.', [
+      {
+        text: 'OK',
+        onPress: () => navigation.navigate('Inicio'),
+      },
+    ]);
   };
 
   return (
-    <LinearGradient 
+    <LinearGradient  
       colors={['#3a7bd5', '#3A6073']} 
       style={styles.container}
     >
@@ -26,6 +79,7 @@ const LoginScreen = ({ navigation }) => {
         <TextInput
           style={styles.input}
           placeholder="Correo electrónico"
+          keyboardType='email-address'
           placeholderTextColor="#ccc"
           value={email}
           onChangeText={setEmail}
@@ -38,7 +92,10 @@ const LoginScreen = ({ navigation }) => {
           value={password}
           onChangeText={setPassword}
         />
-
+        <View style={styles.switchStyle}>
+            <Text style={styles.switchText}>Aceptar términos y condiciones </Text>
+            <Switch value={terminos} onValueChange={() => setTerminos(!terminos)} />
+        </View>
         <TouchableOpacity style={styles.button} onPress={mostrarAlertas}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
@@ -98,6 +155,22 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: 20,
     textDecorationLine: 'underline',
+  },
+  switchStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#ffffff20',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    width: '90%',
+    height:'15%',
+    marginVertical: 5,
+  },
+  switchText: {
+    color: 'white',
+    fontSize: 14,
   },
 });
 
