@@ -3,12 +3,13 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-nativ
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    alert(`Login con:\nEmail: ${email}\nPassword: ${password}`);
+  const mostrarAlertas = () => {
+    alert(`Inicio de sesión éxitoso con:\nEmail: ${email}`);
+    navigation.navigate('Inicio'); // Navega a InicioScreen
   };
 
   return (
@@ -16,7 +17,6 @@ const LoginScreen = () => {
       colors={['#3a7bd5', '#3A6073']} 
       style={styles.container}
     >
-   
       <View style={styles.logoContainer}>
         <Ionicons name="person-circle-outline" size={80} color="white" />
         <Text style={styles.title}>Iniciar Sesión</Text>
@@ -39,7 +39,7 @@ const LoginScreen = () => {
           onChangeText={setPassword}
         />
 
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <TouchableOpacity style={styles.button} onPress={mostrarAlertas}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>
